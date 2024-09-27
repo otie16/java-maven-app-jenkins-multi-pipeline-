@@ -18,6 +18,7 @@ pipeline{
             steps{
                 script{
                     echo 'building the application'
+                    echo 'new added to jenkinsjobs'
                 }
             }
         }
