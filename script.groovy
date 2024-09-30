@@ -16,4 +16,4 @@ def deployApp() {
     echo 'deploying the application...'
 } 
 
-return thisommit -m 
+return this
