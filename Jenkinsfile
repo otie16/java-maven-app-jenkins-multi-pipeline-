@@ -27,6 +27,8 @@ pipeline {
             steps {
                 script {
                     buildImage 'otobongedoho18361/demo-app:jma-3.0'
+                    dockerLogin()
+                    dockerPush 'otobongedoho18361/demo-app:jma-3.0'
                 }
             }
         }
