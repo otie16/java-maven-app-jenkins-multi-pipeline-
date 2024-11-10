@@ -25,8 +25,12 @@ pipeline{
         stage('deploy'){
             steps{
                 script{
-                    echo 'Deploying the application'
-                    echo "Executing pipeline for branch BRANCH_NAME"
+                    def dockerCommand = 'docker run -p 3080:3080 -d otobongedoho18361/demo-app:jma-3.0'
+                    sshagent(['ec2-server-key']) {
+                        sh "ssh -o StrictHostKeyChecking=no ec2-user@3.82.96.76 ${dockerCommand}"
+                    }
+                    // echo 'Deploying the application'
+                    // echo "Executing pipeline for branch BRANCH_NAME"
                 }
             }
         }
