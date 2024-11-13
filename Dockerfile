@@ -23,7 +23,7 @@ FROM openjdk:8-jre-alpine
 WORKDIR /app
 
 # Copy the built JAR file from the build image
-COPY --from=build /app/target/java-maven-app-1.0-SNAPSHOT.jar /app/java-maven-app.jar
+COPY --from=build /target/java-maven-app-1.0-SNAPSHOT.jar /app/java-maven-app.jar
 
 # Expose the port the app will run on
 EXPOSE 8080
