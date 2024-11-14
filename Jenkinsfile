@@ -13,7 +13,7 @@ pipeline{
         maven 'maven-3.9'
     }
     environment {
-        IMAGE_NAME = 'otobongedoho18361/demo-app:java-maven-1.0'    
+        IMAGE_NAME = 'otobongedoho18361/demo-app:java-maven-2.0'    
     }
     stages{
         stage('build app'){
@@ -38,9 +38,11 @@ pipeline{
             steps{
                 script{
                     echo 'deploying docker image to EC2...'
+
                     // def dockerCommand = "docker run -p 8080:8080 -d ${IMAGE_NAME}"
                     // def dockerComposeCmd = "docker-compose -f docker-compose.yaml up --detach"
-                    def shellCmd = "bash ./server-cmds.sh"
+                    // Passing the image name as a parameter to the shell script file
+                    def shellCmd = "bash ./server-cmds.sh ${IMAGE_NAME}"
                     sshagent(['ec2-server-key']) {
                        sh "scp server-cmds.sh ec2-user@52.55.209.78:/home/ec2-user"
                        sh "scp -o StrictHostKeyChecking=no docker-compose.yaml ec2-user@52.55.209.78:/home/ec2-user"
